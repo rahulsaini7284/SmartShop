@@ -1,0 +1,40 @@
+diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
+index e465d8e..6d6597c 100644
+--- a/node_modules/react-scripts/config/webpack.config.js
++++ b/node_modules/react-scripts/config/webpack.config.js
+@@ -8,6 +8,7 @@
+ // @remove-on-eject-end
+ 'use strict';
+ 
++
+ const fs = require('fs');
+ const path = require('path');
+ const webpack = require('webpack');
+@@ -95,6 +96,15 @@ const hasJsxRuntime = (() => {
+   }
+ })();
+ 
++
++module.exports = {
++   resolve: {
++    fallback: {
++      os: require.resolve("os-browserify/browser")
++    }
++  },
++};
++
+ // This is the production and development configuration.
+ // It is focused on developer experience, fast rebuilds, and a minimal bundle.
+ module.exports = function (webpackEnv) {
+@@ -114,6 +124,11 @@ module.exports = function (webpackEnv) {
+ 
+   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
+ 
++
++  resolve:{
++    fallback:{os: require.resolve("os-browserify/browser") }
++  }
++
+   // common function to get style loaders
+   const getStyleLoaders = (cssOptions, preProcessor) => {
+     const loaders = [
